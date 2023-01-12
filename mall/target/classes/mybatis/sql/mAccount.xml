@@ -10,7 +10,7 @@
 	
 	<!-- 로그인 -->
 	<select id="signin" resultType="AccountVo">
-		SELECT userId, userPass, userPhon, userAddr1, userAddr2, userAddr3, money, regDate, verify
+		SELECT userId, userPass, userName ,userPhon, userAddr1, userAddr2, userAddr3, money, regDate, verify
 		FROM account
 		WHERE userId=#{userId}
 	</select>

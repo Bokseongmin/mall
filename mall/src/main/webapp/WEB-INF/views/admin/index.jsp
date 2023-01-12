@@ -2,8 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <html>
 <head>
-<title>Home</title>
-<link rel="stylesheet" href="resources/css/main.css">
+<title>ADMIN</title>
 </head>
 <body>
 	<div id="root">
@@ -23,7 +22,7 @@
 			<div id="container_box">본문</div>
 		</section>
 
-		<footer id="footer">
+		<footer id=footer">
 			<div id="footer_box">
 				<%@ include file="include/footer.jsp"%></div>
 		</footer>
