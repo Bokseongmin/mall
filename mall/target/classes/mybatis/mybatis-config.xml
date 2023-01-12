@@ -7,6 +7,6 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.mall.vo.MemberVo" alias="MemberVo" />
+		<typeAlias type="com.mall.vo.AccountVo" alias="AccountVo" />
 	</typeAliases>
 </configuration>
