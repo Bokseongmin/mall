@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mall.dao.AdminDao;
 import com.mall.vo.CategoryVo;
+import com.mall.vo.GoodsVo;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -17,5 +18,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	public List<CategoryVo> category() throws Exception {
 		return dao.category();
+	}
+
+	public void up(GoodsVo vo) throws Exception {
+		dao.up(vo);
 	}
 }

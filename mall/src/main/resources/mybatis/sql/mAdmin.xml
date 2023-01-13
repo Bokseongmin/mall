@@ -16,4 +16,10 @@
 		)
 		SELECT cateName, cateCode, cateCodeRef, LEVEL FROM cte;
 	</select>
+	
+	<!-- 상품 등록 -->
+	<insert id="up">
+		INSERT INTO goods (gdsName, cateCode, gdsPrice, gdsStock, gdsDes)
+     	VALUES (#{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes})
+	</insert>
 </mapper>

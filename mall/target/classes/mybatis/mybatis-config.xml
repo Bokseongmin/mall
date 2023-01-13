@@ -9,5 +9,6 @@
 	<typeAliases>
 		<typeAlias type="com.mall.vo.AccountVo" alias="AccountVo" />
 		<typeAlias type="com.mall.vo.CategoryVo" alias="CategoryVo" />
+		<typeAlias type="com.mall.vo.GoodsVo" alias="GoodsVo" />
 	</typeAliases>
 </configuration>

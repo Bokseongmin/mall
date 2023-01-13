@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mall.service.AdminService;
 import com.mall.vo.CategoryVo;
+import com.mall.vo.GoodsVo;
 
 import net.sf.json.JSONArray;
 
@@ -38,5 +39,11 @@ public class AdminController {
 		
 		List<CategoryVo> category = service.category();
 		model.addAttribute("category", JSONArray.fromObject(category));
+	}
+	
+	@RequestMapping(value="/goods/up", method=RequestMethod.POST)
+	public String postGoodsUp(GoodsVo vo) throws Exception {
+		service.up(vo);
+		return "redirect:/admin/index";
 	}
 }
