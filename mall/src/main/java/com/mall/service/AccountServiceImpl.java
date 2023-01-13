@@ -12,14 +12,14 @@ import com.mall.vo.AccountVo;
 public class AccountServiceImpl implements AccountService {
 
 	@Resource
-	private AccountDao accountDao;
+	private AccountDao dao;
 
 	public void signup(AccountVo vo) throws Exception {
-		accountDao.signup(vo);
+		dao.signup(vo);
 	}
 
 	public AccountVo signin(AccountVo vo) throws Exception {
-		return accountDao.signin(vo);
+		return dao.signin(vo);
 	}
 
 	public void signout(HttpSession session) throws Exception {
