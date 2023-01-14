@@ -19,4 +19,14 @@ public class AdminDao extends CommonDao{
 	public void up(GoodsVo vo) throws Exception {
 		getSqlSession().insert("mAdmin.up", vo);
 	}
+	
+	//상품 목록
+	public List<GoodsVo> list() throws Exception {
+		return getSqlSession().selectList("mAdmin.list");
+	}
+	
+	//상품 정보
+	public GoodsVo view(int gdsNum) throws Exception {
+		return getSqlSession().selectOne("mAdmin.view", gdsNum);
+	}
 }

@@ -104,6 +104,16 @@ footer#footer ul li {
 	margin-right: 10px;
 }
 </style>
+
+<style>
+.inputArea { margin:10px 0; }
+select { width:100px; }
+label { display:inline-block; width:70px; padding:5px; }
+label[for='gdsDes'] { display:block; }
+input { width:150px; }
+textarea#gdsDes { width:400px; height:180px; }
+</style>
+
 </head>
 <body>
 	<div id="root">

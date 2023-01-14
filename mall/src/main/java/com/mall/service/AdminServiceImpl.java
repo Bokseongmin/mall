@@ -23,4 +23,12 @@ public class AdminServiceImpl implements AdminService{
 	public void up(GoodsVo vo) throws Exception {
 		dao.up(vo);
 	}
+
+	public List<GoodsVo> list() throws Exception {
+		return dao.list();
+	}
+
+	public GoodsVo view(int gdsNum) throws Exception {
+		return dao.view(gdsNum);
+	}
 }
