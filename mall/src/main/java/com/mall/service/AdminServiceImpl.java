@@ -8,14 +8,15 @@ import org.springframework.stereotype.Service;
 
 import com.mall.dao.AdminDao;
 import com.mall.vo.CategoryVo;
+import com.mall.vo.GoodsViewVo;
 import com.mall.vo.GoodsVo;
 
 @Service
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService {
 
 	@Resource
 	private AdminDao dao;
-	
+
 	public List<CategoryVo> category() throws Exception {
 		return dao.category();
 	}
@@ -28,7 +29,19 @@ public class AdminServiceImpl implements AdminService{
 		return dao.list();
 	}
 
-	public GoodsVo view(int gdsNum) throws Exception {
+	/*
+	 * public GoodsVo view(int gdsNum) throws Exception { return dao.view(gdsNum); }
+	 */
+
+	public GoodsViewVo view(int gdsNum) throws Exception {
 		return dao.view(gdsNum);
+	}
+
+	public void modify(GoodsVo vo) throws Exception {
+		dao.modify(vo);
+	}
+
+	public void delete(int gdsNum) throws Exception {
+		dao.delete(gdsNum);
 	}
 }

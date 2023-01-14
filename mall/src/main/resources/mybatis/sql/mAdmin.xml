@@ -31,9 +31,32 @@
 	</select>
 	
 	<!-- 상품 정보 -->
+	<!--
 	<select id="view" resultType="GoodsVo">
 		SELECT gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate
      	FROM goods
         WHERE gdsNum = #{gdsNum}
+	</select> -->
+	
+	<!-- 상품 조회 + 카테고리 조인-->
+	<select id="view" resultType="GoodsViewVO">
+		SELECT g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate
+        FROM goods g
+        INNER JOIN goods_category c
+        ON g.cateCode = c.cateCode          
+        WHERE g.gdsNum = #{gdsNum}
 	</select>
+	
+	<!-- 상품 수정 -->
+	<update id="modify">
+		UPDATE goods
+		SET gdsName = #{gdsName}, cateCode = #{cateCode}, gdsPrice = #{gdsPrice}, gdsStock = #{gdsStock}, gdsDes = #{gdsDes}
+		WHERE gdsNum = ${gdsNum}
+	</update>
+	
+	<!-- 상품 삭제 -->
+	<delete id="delete">
+		DELETE FROM goods
+		WHERE gdsNum=#{gdsNum}
+	</delete>
 </mapper>

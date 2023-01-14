@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mall.service.AdminService;
 import com.mall.vo.CategoryVo;
+import com.mall.vo.GoodsViewVo;
 import com.mall.vo.GoodsVo;
 
 import net.sf.json.JSONArray;
@@ -63,8 +64,39 @@ public class AdminController {
 	public void getGoodsView(@RequestParam("n") int gdsNum, Model model) throws Exception {
 		logger.info("get goods view");
 		
-		GoodsVo gds = service.view(gdsNum);
+		GoodsViewVo gds = service.view(gdsNum);
 		
 		model.addAttribute("goods", gds);
+	}
+	
+	//상품 수정
+	@RequestMapping(value="/goods/modify", method=RequestMethod.GET)
+	public void getGoodsModfiy(@RequestParam("n") int gdsNum, Model model) throws Exception {
+		logger.info("get goods modify");
+		
+		GoodsViewVo gds = service.view(gdsNum);
+		model.addAttribute("goods", gds);
+		
+		List<CategoryVo> category = service.category();
+		model.addAttribute("category", JSONArray.fromObject(category));
+	}
+	
+	@RequestMapping(value="/goods/modify", method=RequestMethod.POST)
+	public String postGoodsModfiy(GoodsVo vo) throws Exception {
+		logger.info("post goods modify");
+		
+		service.modify(vo);
+		
+		return "redirect:/admin/index";
+	}
+	
+	// 상품 삭제
+	@RequestMapping(value="/goods/delete", method=RequestMethod.POST)
+	public String postGoodsDelete(@RequestParam("n") int gdsNum) throws Exception {
+		logger.info("post goods delete");
+		
+		service.delete(gdsNum);
+		
+		return "redirect:/admin/index";
 	}
 }
