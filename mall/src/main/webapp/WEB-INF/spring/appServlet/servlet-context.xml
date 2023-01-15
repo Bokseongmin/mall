@@ -53,6 +53,9 @@
 		
 	<!-- 대체 이미지 -->
 	<resources mapping="/images/**" location="/resources/images/" />
+	
+	<!-- CK에디터 -->
+	<resources mapping="/ckUpload/**" location="/resources/ckUpload/" />
 
 	<beans:bean
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"

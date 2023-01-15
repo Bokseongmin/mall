@@ -19,6 +19,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<!-- 워즈윅 -->
+<script src="/resources/ckeditor/ckeditor.js"></script>
 <style>
 body {
 	font-family: '맑은 고딕', verdana;
@@ -133,7 +135,9 @@ textarea#gdsDes {
 	height: 180px;
 }
 
-.select_img img {margin:20px 0;}
+.select_img img {
+	margin: 20px 0;
+}
 </style>
 
 </head>
@@ -157,7 +161,8 @@ textarea#gdsDes {
 			</aside>
 			<div id="container_box">
 				<h2>상품 등록</h2>
-				<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+				<form role="form" method="post" autocomplete="off"
+					enctype="multipart/form-data">
 					<label>1차 분류</label> <select class="category1">
 						<option value="">전체</option>
 					</select> <label>2차 분류</label> <select class="category2" name="cateCode">
@@ -183,6 +188,17 @@ textarea#gdsDes {
 						<label for="gdsDes">상품소개</label>
 						<textarea rows="5" cols="50" id="gdsDes" name="gdsDes"></textarea>
 					</div>
+
+					<script>
+						var ckeditor_config = {
+							resize_enaleb : false,
+							enterMode : CKEDITOR.ENTER_BR,
+							shiftEnterMode : CKEDITOR.ENTER_P,
+							filebrowserUploadUrl : "/admin/goods/ckUpload"
+						};
+
+						CKEDITOR.replace("gdsDes", ckeditor_config);
+					</script>
 
 					<div class="inputArea">
 						<label for="gdsImg">이미지</label> <input type="file" id="gdsImg"
@@ -210,7 +226,7 @@ textarea#gdsDes {
 												}
 											});
 						</script>
-						<%=request.getRealPath("/") %>
+						<%=request.getRealPath("/")%>
 					</div>
 					<div class="inputArea">
 						<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>

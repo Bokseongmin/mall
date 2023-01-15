@@ -135,6 +135,8 @@ textarea#gdsDes {
 
 .oriImg {width:500px; height:auto;}
 .thumbImg{}
+
+.gdsDes img {max-width:600px; height:auto;}
 </style>
 </head>
 <body>
@@ -178,7 +180,7 @@ textarea#gdsDes {
 					</div>
 
 					<div class="inputArea">
-						<label for="gdsDes">상품소개</label> <span>${goods.gdsDes}</span>
+						<label for="gdsDes">상품소개</label> <div class="gdsDes">${goods.gdsDes}</div>
 					</div>
 					<div class="inputArea">
 						<label for="gdsImg">이미지</label>
