@@ -1,5 +1,6 @@
 package com.mall.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mall.service.AdminService;
+import com.mall.utils.UploadFileUtils;
 import com.mall.vo.CategoryVo;
 import com.mall.vo.GoodsViewVo;
 import com.mall.vo.GoodsVo;
@@ -27,6 +30,9 @@ public class AdminController {
 	
 	@Resource
 	AdminService service;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	//관리자 화면
 	@RequestMapping(value="/index", method=RequestMethod.GET)
@@ -44,7 +50,22 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/goods/up", method=RequestMethod.POST)
-	public String postGoodsUp(GoodsVo vo) throws Exception {
+	public String postGoodsUp(GoodsVo vo, MultipartFile file) throws Exception {
+		
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+		 fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		} else {
+		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+		
+		// gdsImg에 원본 파일 경로 + 파일명 저장
+		vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		// gdsThumbImg에 섬네일 파일 경로 + 썸네일 파일명 저장
+		vo.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		service.up(vo);
 		return "redirect:/admin/index";
 	}
@@ -59,13 +80,13 @@ public class AdminController {
 		model.addAttribute("list", list);
 	}
 	
-	//상품 정보
+	//상품 조회
 	@RequestMapping(value="/goods/view", method=RequestMethod.GET)
 	public void getGoodsView(@RequestParam("n") int gdsNum, Model model) throws Exception {
 		logger.info("get goods view");
 		
 		GoodsViewVo gds = service.view(gdsNum);
-		
+		System.out.println(gds.getGdsThumbImg());
 		model.addAttribute("goods", gds);
 	}
 	

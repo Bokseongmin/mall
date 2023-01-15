@@ -19,8 +19,8 @@
 	
 	<!-- 상품 등록 -->
 	<insert id="up">
-		INSERT INTO goods (gdsName, cateCode, gdsPrice, gdsStock, gdsDes)
-     	VALUES (#{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes})
+		INSERT INTO goods (gdsName, cateCode, gdsPrice, gdsStock, gdsDes, gdsImg, gdsThumbImg)
+     	VALUES (#{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes}, #{gdsImg}, #{gdsThumbImg})
 	</insert>
 	
 	<!-- 상품 목록 -->
@@ -40,7 +40,7 @@
 	
 	<!-- 상품 조회 + 카테고리 조인-->
 	<select id="view" resultType="GoodsViewVO">
-		SELECT g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate
+		SELECT g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsThumbImg, gdsDate
         FROM goods g
         INNER JOIN goods_category c
         ON g.cateCode = c.cateCode          
