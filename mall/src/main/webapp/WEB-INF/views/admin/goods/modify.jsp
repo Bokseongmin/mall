@@ -132,6 +132,7 @@ textarea#gdsDes {
 	width: 400px;
 	height: 180px;
 }
+.select_img img { width:500px; margin:20px 0;}
 </style>
 
 </head>
@@ -155,7 +156,7 @@ textarea#gdsDes {
 			</aside>
 			<div id="container_box">
 				<h2>상품 수정</h2>
-				<form role="form" method="post" autocomplete="off">
+				<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
 
 					<input type="hidden" name="gdsNum" value="${goods.gdsNum}" />
 
@@ -183,13 +184,47 @@ textarea#gdsDes {
 						<textarea rows="5" cols="50" id="gdsDes" name="gdsDes">${goods.gdsDes}</textarea>
 					</div>
 					<div class="inputArea">
+						<label for="gdsImg">이미지</label> 
+						<input type="file" id="gdsImg" name="file" /> 
+							<input type="hidden" name="gdsImg" value="${goods.gdsImg}" /> 
+							<input type="hidden" name="gdsThumbImg" value="${goods.gdsThumbImg}" />
+						<div class="select_img">
+							<img src="${goods.gdsImg}" />
+						</div>
+
+						<script>
+							$("#gdsImg")
+									.change(
+											function() {
+												if (this.files && this.files[0]) {
+													var reader = new FileReader;
+													reader.onload = function(
+															data) {
+														$(".select_img img")
+																.attr(
+																		"src",
+																		data.target.result)
+																.width(500);
+													}
+													reader
+															.readAsDataURL(this.files[0]);
+												}
+											});
+						</script>
+						<%=request.getRealPath("/")%>
+					</div>
+					<div class="inputArea">
 						<button type="submit" id="update_Btn" class="btn btn-primary">완료</button>
 						<button type="button" id="back_Btn" class="btn btn-warning">취소</button>
 
 						<script>
 							$("#back_Btn").click(function() {
 								//history.back();
-								location.href = "/admin/goods/view?n=" + ${goods.gdsNum};
+								location.href = "/admin/goods/view?n=" + $
+								{
+									goods.gdsNum
+								}
+								;
 							});
 						</script>
 					</div>
@@ -297,7 +332,9 @@ textarea#gdsDes {
 			$(".category1").val(select_cateCode);
 			//$(".category2").val(select_cateCode);
 			// select_cateCod가 부여되지 않는 현상이 있어서 아래 코드로 대체
-			$(".category2").append("<option value='" + select_cateCode + "' selected='selected'>전체</option>");
+			$(".category2")
+					.append(
+							"<option value='" + select_cateCode + "' selected='selected'>전체</option>");
 		}
 	</script>
 </body>

@@ -50,7 +50,7 @@
 	<!-- 상품 수정 -->
 	<update id="modify">
 		UPDATE goods
-		SET gdsName = #{gdsName}, cateCode = #{cateCode}, gdsPrice = #{gdsPrice}, gdsStock = #{gdsStock}, gdsDes = #{gdsDes}
+		SET gdsName = #{gdsName}, cateCode = #{cateCode}, gdsPrice = #{gdsPrice}, gdsStock = #{gdsStock},  gdsImg = #{gdsImg}, gdsThumbImg = #{gdsThumbImg}, gdsDes = #{gdsDes}
 		WHERE gdsNum = ${gdsNum}
 	</update>
 	
