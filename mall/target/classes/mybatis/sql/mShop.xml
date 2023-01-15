@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mShop">
+
+	<!-- 목록 1차 -->
+	<select id="list_1" resultType="GoodsViewVo">
+		SELECT g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate, g.gdsImg, g.gdsThumbImg
+		FROM goods g
+		INNER JOIN goods_category c
+		ON g.cateCode = c.cateCode
+		WHERE g.cateCode = #{cateCode}
+		OR c.cateCodeRef = #{cateCodeRef}
+	</select>
+	
+	<!-- 목록 2차 -->
+	<select id="list_2" resultType="GoodsViewVo">
+		SELECT g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate, g.gdsImg, g.gdsThumbImg
+		FROM goods g
+		INNER JOIN goods_category c
+		ON g.cateCode = c.cateCode
+		WHERE g.cateCode = #{cateCode}
+	</select>
+</mapper>
