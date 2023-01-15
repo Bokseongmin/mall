@@ -140,8 +140,10 @@ public class AdminController {
 	public void getGoodsList(Model model) throws Exception {
 		logger.info("get goods list");
 
-		List<GoodsVo> list = service.list();
+		//List<GoodsVo> list = service.list();
 
+		List<GoodsViewVo> list = service.list();
+		
 		model.addAttribute("list", list);
 	}
 
@@ -187,7 +189,7 @@ public class AdminController {
 					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
 			vo.setGdsImg(req.getParameter("gdsImg"));
-			vo.setGdsThumbImg("gdsThumbImg");
+			vo.setGdsThumbImg(req.getParameter("gdsThumbImg"));
 		}
 
 		service.modify(vo);

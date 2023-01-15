@@ -19,6 +19,8 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<!-- ck 에디터 -->
+<script src="/resources/ckeditor/ckeditor.js"></script>
 <style>
 body {
 	font-family: '맑은 고딕', verdana;
@@ -132,10 +134,31 @@ textarea#gdsDes {
 	width: 400px;
 	height: 180px;
 }
-.select_img img { width:500px; margin:20px 0;}
+
+.select_img img {
+	width: 500px;
+	margin: 20px 0;
+}
 </style>
 
 </head>
+
+<script>
+	var regExp = /[^0-9]/gi;
+
+	$("#gdsPrice").keyup(function() {
+		numCheck($(this));
+	});
+	$("#gdsStock").keyup(function() {
+		numCheck($(this));
+	});
+
+	function numCheck(selector) {
+		var tempVal = selector.val();
+		selector.val(tempVal.replace(regExp, ""));
+	}
+</script>
+
 <body>
 	<div id="root">
 		<header id="header">
@@ -156,7 +179,8 @@ textarea#gdsDes {
 			</aside>
 			<div id="container_box">
 				<h2>상품 수정</h2>
-				<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+				<form role="form" method="post" autocomplete="off"
+					enctype="multipart/form-data">
 
 					<input type="hidden" name="gdsNum" value="${goods.gdsNum}" />
 
@@ -182,12 +206,24 @@ textarea#gdsDes {
 					<div class="inputArea">
 						<label for="gdsDes">상품소개</label>
 						<textarea rows="5" cols="50" id="gdsDes" name="gdsDes">${goods.gdsDes}</textarea>
+
+						<script>
+							var ckeditor_config = {
+								resize_enaleb : false,
+								enterMode : CKEDITOR.ENTER_BR,
+								shiftEnterMode : CKEDITOR.ENTER_P,
+								filebrowserUploadUrl : "/admin/goods/ckUpload"
+							};
+
+							CKEDITOR.replace("gdsDes", ckeditor_config);
+						</script>
+						
 					</div>
 					<div class="inputArea">
-						<label for="gdsImg">이미지</label> 
-						<input type="file" id="gdsImg" name="file" /> 
-							<input type="hidden" name="gdsImg" value="${goods.gdsImg}" /> 
-							<input type="hidden" name="gdsThumbImg" value="${goods.gdsThumbImg}" />
+						<label for="gdsImg">이미지</label> <input type="file" id="gdsImg"
+							name="file" /> <input type="hidden" name="gdsImg"
+							value="${goods.gdsImg}" /> <input type="hidden"
+							name="gdsThumbImg" value="${goods.gdsThumbImg}" />
 						<div class="select_img">
 							<img src="${goods.gdsImg}" />
 						</div>

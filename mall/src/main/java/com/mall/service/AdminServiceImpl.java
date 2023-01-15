@@ -25,7 +25,12 @@ public class AdminServiceImpl implements AdminService {
 		dao.up(vo);
 	}
 
+	/*// 상품 목록
 	public List<GoodsVo> list() throws Exception {
+		return dao.list();
+	}*/
+	
+	public List<GoodsViewVo> list() throws Exception {
 		return dao.list();
 	}
 
