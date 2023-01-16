@@ -4,7 +4,7 @@
 
 	<!-- 목록 1차 -->
 	<select id="list_1" resultType="GoodsViewVo">
-		SELECT g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate, g.gdsImg, g.gdsThumbImg
+		SELECT g.gdsNum, g.gdsName, g.cateCode, g.gdsImg, g.gdsThumbImg, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate
 		FROM goods g
 		INNER JOIN goods_category c
 		ON g.cateCode = c.cateCode
@@ -14,10 +14,19 @@
 	
 	<!-- 목록 2차 -->
 	<select id="list_2" resultType="GoodsViewVo">
-		SELECT g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate, g.gdsImg, g.gdsThumbImg
+		SELECT g.gdsNum, g.gdsName, g.cateCode, g.gdsImg, g.gdsThumbImg, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate
 		FROM goods g
 		INNER JOIN goods_category c
 		ON g.cateCode = c.cateCode
 		WHERE g.cateCode = #{cateCode}
+	</select>
+	
+	<!-- 조회 -->
+	<select id="view" resultType="GoodsViewVo">
+		SELECT g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsThumbImg, gdsDate
+        FROM goods g
+        INNER JOIN goods_category c
+        ON g.cateCode = c.cateCode          
+        WHERE g.gdsNum = #{gdsNum}
 	</select>
 </mapper>

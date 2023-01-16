@@ -25,4 +25,8 @@ public class ShopDao extends CommonDao{
 	public List<GoodsViewVo> list(int cateCode) throws Exception {
 		return getSqlSession().selectList("mShop.list_2", cateCode);
 	}
+	
+	public GoodsViewVo view(int gdsNum) throws Exception {
+		return getSqlSession().selectOne("mShop.view", gdsNum);
+	}
 }

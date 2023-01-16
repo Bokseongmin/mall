@@ -26,4 +26,8 @@ public class ShopServiceImpl implements ShopService{
 			return dao.list(cateCode);
 		}
 	}
+
+	public GoodsViewVo view(int gdsNum) throws Exception {
+		return dao.view(gdsNum);
+	}
 }

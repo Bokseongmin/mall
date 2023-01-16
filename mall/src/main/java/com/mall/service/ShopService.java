@@ -8,4 +8,7 @@ public interface ShopService {
 	
 	// 리스트
 	public List<GoodsViewVo> list(int cateCode, int level) throws Exception;
+	
+	//조회
+	public GoodsViewVo view(int gdsNum) throws Exception;
 }
