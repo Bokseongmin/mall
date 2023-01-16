@@ -18,4 +18,12 @@ public interface ShopService {
 	
 	// 리뷰 목록
 	public List<ReplyVo> reply_list(int gdsNum) throws Exception;
+	
+	// 리뷰 수정
+	
+	// 리뷰 삭제
+	public void reply_delete(ReplyVo vo) throws Exception;
+	
+	// 리뷰 삭제 아이디 확인
+	public String idCheck(int repNum) throws Exception;
 }

@@ -280,6 +280,8 @@ section.replyList div.replyContent {
 	padding: 10px;
 	margin: 20px 0;
 }
+
+section.replyList div.replyFooter button { font-size:14px; border: 1px solid #999; background:none; margin-right:10px; }
 </style>
 
 <script>
@@ -296,7 +298,14 @@ function replyList() {
 		str += "<li data-gdsNum='" + this.gdsNum + "'>" 
 		+ "<div class='userInfo'>"
 	    + "<span class='userName'>" + this.userName + "</span>" + "<span class='date'>" + repDate + "</span>" + "</div>"
-	    + "<div class='replyContent'>" + this.repCon + "</div>"
+	    + "<div class='replyContent'>" + this.repCon 
+	    + "</div>"
+	    
+	    + "<div class='replyFooter'>"
+	    + "<button type='button' class='modify' data-repNum='" + this.repNum + "'>M</button>"
+	    + "<button type='button' class='delete' data-repNum='" + this.repNum + "'>D</button>"
+	    + "</div>"
+	    
 	    + "</li>";
 	    });
 	    
@@ -454,6 +463,31 @@ function replyList() {
 							</ol>
 							<script>
 								replyList();
+							</script>
+							
+							<script>
+							$(document).on("click", ".delete", function(){
+								var deleteConfirm = confirm("정말로 삭제하시겠습니까?");
+								
+								if(deleteConfirm) {
+								var data = {repNum : $(this).attr("data-repNum")};
+								
+								$.ajax({
+									url : "/shop/view/replyDelete",
+									type : "post",
+									data : data,
+									success : function(result){
+										if(result == 1) {
+											replyList();
+										} else {
+											alert("작성자 본인만 할 수 있습니다.")
+										}
+										}, error : function() {
+											alert("로그인을 먼저 하셔야 됩니다.")
+										}
+								});
+								}
+								});
 							</script>
 						</section>
 					</div>

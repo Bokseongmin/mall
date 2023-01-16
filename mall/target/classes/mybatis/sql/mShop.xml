@@ -44,4 +44,18 @@
 		ON r.userId = a.userId
 		WHERE gdsNum = #{gdsNum}
 	</select>
+	
+	<!-- 리뷰 수정 -->
+	<!-- 리뷰 삭제 -->
+	<delete id="reply_delete">
+		DELETE FROM reply
+		WHERE repNum = #{repNum}
+		AND userId = #{userId}
+	</delete>
+	
+	<select id="reply_idCheck" resultType="String">
+		SELECT userId
+		FROM reply
+		WHERE repNum = #{repNum}
+	</select>
 </mapper>

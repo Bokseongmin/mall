@@ -90,4 +90,28 @@ public class ShopController {
 		
 		return reply;
 	}
+	
+	// 리뷰 삭제
+	@ResponseBody
+	@RequestMapping(value="/view/replyDelete", method = RequestMethod.POST)
+	public int getReplyList(ReplyVo vo, HttpSession session) throws Exception {
+		logger.info("post delete reply");
+		
+		int result = 0;
+		
+		AccountVo account = (AccountVo)session.getAttribute("account");
+		String userId = service.idCheck(vo.getRepNum());
+		
+		System.out.println(account.getUserId());
+		System.out.println(vo.getRepNum());
+		System.out.println(userId);
+		
+		if(account.getUserId().equals(userId)) {
+			vo.setUserId(account.getUserId());
+			service.reply_delete(vo);
+			
+			result = 1;
+		}
+		return result;
+	}
 }

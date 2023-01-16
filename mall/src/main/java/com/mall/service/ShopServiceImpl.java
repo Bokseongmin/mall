@@ -39,4 +39,12 @@ public class ShopServiceImpl implements ShopService{
 	public List<ReplyVo> reply_list(int gdsNum) throws Exception {
 		return dao.reply_list(gdsNum);
 	}
+	
+	public void reply_delete(ReplyVo vo) throws Exception {
+		dao.reply_delete(vo);
+	}
+
+	public String idCheck(int repNum) throws Exception {
+		return dao.idCheck(repNum);
+	}
 }

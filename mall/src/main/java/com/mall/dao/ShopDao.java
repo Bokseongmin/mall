@@ -41,4 +41,16 @@ public class ShopDao extends CommonDao{
 	public List<ReplyVo> reply_list(int gdsNum) throws Exception {
 		return getSqlSession().selectList("mShop.reply_list", gdsNum);
 	}
+	
+	// 리뷰 수정
+	
+	// 리뷰 삭제
+	public void reply_delete(ReplyVo vo) throws Exception {
+		getSqlSession().delete("mShop.reply_delete", vo);
+	}
+	
+	// 리뷰 삭제 아이디 확인
+	public String idCheck(int repNum) throws Exception {
+		return getSqlSession().selectOne("mShop.reply_idCheck", repNum);
+	}
 }
