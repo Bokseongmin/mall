@@ -2,6 +2,7 @@ package com.mall.service;
 
 import java.util.List;
 
+import com.mall.vo.CartVo;
 import com.mall.vo.GoodsViewVo;
 import com.mall.vo.ReplyVo;
 
@@ -27,4 +28,10 @@ public interface ShopService {
 	
 	// 리뷰 삭제 아이디 확인
 	public String idCheck(int repNum) throws Exception;
+	
+	// 상품 담기
+	public void cart_add(CartVo vo) throws Exception;
+
+	// 카트 리스트
+	public List<CartVo> cart_List(String userId) throws Exception;
 }

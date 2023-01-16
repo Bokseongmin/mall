@@ -12,5 +12,6 @@
 		<typeAlias type="com.mall.vo.GoodsVo" alias="GoodsVo" />
 		<typeAlias type="com.mall.vo.GoodsViewVo" alias="GoodsViewVo" />
 		<typeAlias type="com.mall.vo.ReplyVo" alias="ReplyVo" />
+		<typeAlias type="com.mall.vo.CartVo" alias="CartVo" />
 	</typeAliases>
 </configuration>

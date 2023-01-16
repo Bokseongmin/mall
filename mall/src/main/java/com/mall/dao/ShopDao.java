@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.mall.vo.CartVo;
 import com.mall.vo.GoodsViewVo;
 import com.mall.vo.ReplyVo;
 
@@ -55,5 +56,15 @@ public class ShopDao extends CommonDao{
 	// 리뷰 삭제 아이디 확인
 	public String idCheck(int repNum) throws Exception {
 		return getSqlSession().selectOne("mShop.reply_idCheck", repNum);
+	}
+	
+	// 카트 담기
+	public void cart_add(CartVo vo) throws Exception {
+		getSqlSession().insert("mShop.cart_add", vo);
+	}
+	
+	// 카트 목록
+	public List<CartVo> cart_list(String userId) throws Exception {
+		return getSqlSession().selectList("mShop.cart_list", userId);
 	}
 }

@@ -290,12 +290,52 @@ section.replyList div.replyFooter button {
 </style>
 
 <style>
-	div.replyModal { position:relative; z-index:1; display:none; }
-	div.modalBackground { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.8); z-index:-1; }
-	div.modalContent { position:fixed; top:20%; left:calc(50% - 250px); width:500px; height:250px; padding:20px 10px; background:#fff; border:2px solid #666; }
-	div.modalContent textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px; height:200px; }
-	div.modalContent button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; }
-	div.modalContent button.modal_cancel { margin-left:20px; }
+div.replyModal {
+	position: relative;
+	z-index: 1;
+	display: none;
+}
+
+div.modalBackground {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: -1;
+}
+
+div.modalContent {
+	position: fixed;
+	top: 20%;
+	left: calc(50% - 250px);
+	width: 500px;
+	height: 250px;
+	padding: 20px 10px;
+	background: #fff;
+	border: 2px solid #666;
+}
+
+div.modalContent textarea {
+	font-size: 16px;
+	font-family: '맑은 고딕', verdana;
+	padding: 10px;
+	width: 500px;
+	height: 200px;
+}
+
+div.modalContent button {
+	font-size: 20px;
+	padding: 5px 10px;
+	margin: 10px 0;
+	background: #fff;
+	border: 1px solid #ccc;
+}
+
+div.modalContent button.modal_cancel {
+	margin-left: 20px;
+}
 </style>
 
 <script>
@@ -410,7 +450,36 @@ function replyList() {
 							</p>
 
 							<p class="addToCart">
-								<button type="button">카트에 담기</button>
+								<button type="button" class="addCart_btn">카트에 담기</button>
+
+								<script>
+									 $(".addCart_btn").click(function(){
+										 var gdsNum = $("#gdsNum").val();
+										 var cartStock = $(".numBox").val();
+										 
+										 var data = {
+												 gdsNum : gdsNum,
+												 cartStock : cartStock
+												 };
+										 $.ajax({
+											 url : "/shop/view/addCart",
+											 type : "post",
+											 data : data,
+											 success : function(result){
+												 if(result == 1) {
+													 alert("카트 담기 성공");
+													 $(".numBox").val("1");
+												 } else {
+													 alert("로그인이 필요합니다.")
+													 $(".numBox").val("1");
+												 }
+												 },
+												 error : function(){
+													 alert("카트 담기 실패");
+													 }
+												 });
+										 });
+								</script>
 							</p>
 						</div>
 
@@ -483,7 +552,7 @@ function replyList() {
 							<script>
 								replyList();
 							</script>
-							
+
 							<script>
 							$(document).on("click", ".modify", function(){
 							//$(".replyModal").attr("style", "display:block;");
@@ -553,7 +622,7 @@ function replyList() {
 		<div class="modalBackground"></div>
 
 	</div>
-	
+
 	<script>
 	$(".modal_modify_btn").click(function(){
 		 var modifyConfirm = confirm("정말로 수정하시겠습니까?");

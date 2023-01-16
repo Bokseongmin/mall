@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mall.dao.ShopDao;
+import com.mall.vo.CartVo;
 import com.mall.vo.GoodsViewVo;
 import com.mall.vo.ReplyVo;
 
@@ -50,5 +51,13 @@ public class ShopServiceImpl implements ShopService{
 
 	public void reply_modify(ReplyVo vo) throws Exception {
 		dao.reply_modify(vo);
+	}
+	
+	public void cart_add(CartVo vo) throws Exception {
+		dao.cart_add(vo);
+	}
+	
+	public List<CartVo> cart_List(String userId) throws Exception {
+		return dao.cart_list(userId);
 	}
 }

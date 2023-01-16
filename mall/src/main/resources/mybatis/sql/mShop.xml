@@ -65,4 +65,20 @@
 		FROM reply
 		WHERE repNum = #{repNum}
 	</select>
+	
+	<!-- 카트 담기 -->
+	<insert id="cart_add">
+		INSERT INTO cart(userId, gdsNum, cartStock)
+		VALUES (#{userId}, #{gdsNum}, #{cartStock});
+	</insert>
+	
+	<!-- 카트 -->
+	<select id="cart_list" resultType="CartVo">
+		SELECT ROW_NUMBER() OVER(ORDER BY c.cartNum DESC) AS num, c.cartNum, c.userId, c.gdsNum, c.cartStock, c.addDate,
+		g.gdsNum, g.gdsPrice, g.gdsThumbImg
+		FROM cart c
+		INNER JOIN goods g
+		ON c.gdsNum = g.gdsNum
+		WHERE c.userId = #{userId}
+	</select>
 </mapper>

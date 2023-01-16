@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mall.service.ShopService;
 import com.mall.vo.AccountVo;
+import com.mall.vo.CartVo;
 import com.mall.vo.GoodsViewVo;
 import com.mall.vo.ReplyVo;
 
@@ -137,5 +138,36 @@ public class ShopController {
 			result = 1;
 		}
 		return result;
+	}
+
+	// 카트 담기
+	@ResponseBody
+	@RequestMapping(value = "/view/addCart", method = RequestMethod.POST)
+	public int postCartAdd(CartVo cart, HttpSession session) throws Exception {
+		int result = 0;
+
+		AccountVo member = (AccountVo) session.getAttribute("account");
+
+		if (member != null) {
+			cart.setUserId(member.getUserId());
+			service.cart_add(cart);
+			result = 1;
+		}
+
+		return result;
+	}
+
+	// 카트 목록
+	@RequestMapping(value = "/cartList", method = RequestMethod.GET)
+	public void getCartList(HttpSession session, Model model) throws Exception {
+		logger.info("get cart list");
+
+		AccountVo member = (AccountVo) session.getAttribute("account");
+		String userId = member.getUserId();
+
+		List<CartVo> cartList = service.cart_List(userId);
+
+		model.addAttribute("cartList", cartList);
+
 	}
 }
