@@ -88,4 +88,43 @@
 		WHERE cartNum = #{cartNum}
 		AND userId = #{userId}
 	</delete>
+	
+	<!-- 주문 정보 -->
+	<insert id="order_info">
+		INSERT INTO order_tbl(orderId, userId, orderRec, userAddr1, userAddr2, userAddr3, orderPhon, amount)
+		VALUES (#{orderId}, #{userId}, #{orderRec}, #{userAddr1}, #{userAddr2}, #{userAddr3}, #{orderPhon}, #{amount})
+	</insert>
+	
+	<!-- 상세 주문 정보 -->
+	<insert id="order_detail_info">
+		INSERT INTO order_detail(orderId, gdsNum, cartStock)
+		SELECT #{orderId}, gdsNum, cartStock
+		FROM cart
+	</insert>
+	
+	<!-- 카트 비우기 -->
+	<delete id="delete_all">
+		DELETE FROM cart
+		WHERE userId = #{userId}
+	</delete>
+	
+	<!-- 유저 주문 목록 -->
+	<select id="order_list" resultType="OrderVo">
+		SELECT orderId, userId, orderRec, userAddr1, userAddr2, userAddr3, orderPhon, amount, orderDate
+		FROM order_tbl
+		WHERE userId = #{userId}
+	</select>
+	
+	<!-- 특정 주문 목록 -->
+	<select id="order_view" resultType="OrderListVo">
+		SELECT  o.orderId, o.userId, o.orderRec, o.userAddr1, o.userAddr2, o.userAddr3, o.orderPhon, o.amount, o.orderDate, d.orderNum, d.gdsNum, d.cartStock,
+		g.gdsName, g.gdsThumbImg, g.gdsPrice
+		FROM order_tbl o
+		INNER JOIN order_detail d
+		ON o.orderId = d.orderId
+		INNER JOIN goods g
+		ON d.gdsNum = g.gdsNum
+		WHERE o.userId = #{userId}
+		AND o.orderId = #{orderId}
+	</select>
 </mapper>

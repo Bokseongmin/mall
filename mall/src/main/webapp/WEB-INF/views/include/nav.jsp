@@ -13,6 +13,7 @@
 		</c:if>
 		<li><a>${account.userName}님 환영합니다.</a></li>
 		<li><a href="/shop/cartList">카트 리스트</a></li>
+		<li><a href="/shop/orderList">주문 리스트</a></li>
 		<li><a href="/sign/out">로그아웃</a></li>
 	</c:if>
 </ul>

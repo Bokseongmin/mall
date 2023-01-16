@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.mall.vo.CartVo;
 import com.mall.vo.GoodsViewVo;
+import com.mall.vo.OrderDetailVo;
+import com.mall.vo.OrderListVo;
+import com.mall.vo.OrderVo;
 import com.mall.vo.ReplyVo;
 
 public interface ShopService {
@@ -37,4 +40,19 @@ public interface ShopService {
 	
 	// 카트 삭제
 	public void cart_delete(CartVo vo) throws Exception;
+	
+	// 주문 정보
+	public void order_info(OrderVo vo) throws Exception;
+	
+	// 주문 상세 정보
+	public void order_detail_info(OrderDetailVo vo) throws Exception;
+	
+	// 카트 비우기
+	public void delete_all(String userId) throws Exception;
+	
+	// 주문 목록
+	public List<OrderVo> order_list(OrderVo vo) throws Exception;
+	
+	// 특정 주문 목록
+	public List<OrderListVo> order_view(OrderVo vo) throws Exception;
 }

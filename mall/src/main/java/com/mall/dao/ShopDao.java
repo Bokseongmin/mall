@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.mall.vo.CartVo;
 import com.mall.vo.GoodsViewVo;
+import com.mall.vo.OrderDetailVo;
+import com.mall.vo.OrderListVo;
+import com.mall.vo.OrderVo;
 import com.mall.vo.ReplyVo;
 
 @Repository("ShopDao")
@@ -71,5 +74,30 @@ public class ShopDao extends CommonDao{
 	// 카트 삭제
 	public void cart_delete(CartVo vo) throws Exception {
 		getSqlSession().delete("mShop.cart_delete", vo);
+	}
+	
+	// 주문 정보
+	public void order_info(OrderVo vo) throws Exception {
+		getSqlSession().insert("mShop.order_info", vo);
+	}
+	
+	// 주문 상세 정보
+	public void order_detail_info(OrderDetailVo vo) throws Exception {
+		getSqlSession().insert("mShop.order_detail_info", vo);
+	}
+	
+	// 카트 비우기
+	public void delete_all(String userId) throws Exception {
+		getSqlSession().delete("mShop.delete_all", userId);
+	}
+	
+	// 주문 목록
+	public List<OrderVo> order_list(OrderVo vo) throws Exception {
+		return getSqlSession().selectList("mShop.order_list", vo);
+	}
+	
+	// 특정 주문 목록
+	public List<OrderListVo> order_view(OrderVo vo) throws Exception {
+		return getSqlSession().selectList("mShop.order_view", vo);
 	}
 }

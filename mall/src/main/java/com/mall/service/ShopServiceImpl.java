@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.mall.dao.ShopDao;
 import com.mall.vo.CartVo;
 import com.mall.vo.GoodsViewVo;
+import com.mall.vo.OrderDetailVo;
+import com.mall.vo.OrderListVo;
+import com.mall.vo.OrderVo;
 import com.mall.vo.ReplyVo;
 
 @Service
@@ -63,5 +66,25 @@ public class ShopServiceImpl implements ShopService{
 
 	public void cart_delete(CartVo vo) throws Exception {
 		dao.cart_delete(vo);
+	}
+
+	public void order_info(OrderVo vo) throws Exception {
+		dao.order_info(vo);
+	}
+
+	public void order_detail_info(OrderDetailVo vo) throws Exception {
+		dao.order_detail_info(vo);
+	}
+	
+	public void delete_all(String userId) throws Exception {
+		dao.delete_all(userId);
+	}
+	
+	public List<OrderVo> order_list(OrderVo vo) throws Exception {
+		return dao.order_list(vo);
+	}
+	
+	public List<OrderListVo> order_view(OrderVo vo) throws Exception {
+		return dao.order_view(vo);
 	}
 }

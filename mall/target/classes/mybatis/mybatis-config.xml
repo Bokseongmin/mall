@@ -13,5 +13,7 @@
 		<typeAlias type="com.mall.vo.GoodsViewVo" alias="GoodsViewVo" />
 		<typeAlias type="com.mall.vo.ReplyVo" alias="ReplyVo" />
 		<typeAlias type="com.mall.vo.CartVo" alias="CartVo" />
+		<typeAlias type="com.mall.vo.OrderVo" alias="OrderVo" />
+		<typeAlias type="com.mall.vo.OrderListVo" alias="OrderListVo" />
 	</typeAliases>
 </configuration>
