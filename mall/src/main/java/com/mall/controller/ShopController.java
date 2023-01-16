@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mall.service.ShopService;
 import com.mall.vo.AccountVo;
@@ -45,10 +46,13 @@ public class ShopController {
 		GoodsViewVo view = service.view(gdsNum);
 		model.addAttribute("view", view);
 		
+		/*
 		List<ReplyVo> reply = service.reply_list(gdsNum);
 		model.addAttribute("reply", reply);
+		*/
 	}
 	
+	/*
 	// 조회 - 리뷰 작성
 	@RequestMapping(value="/view", method = RequestMethod.POST)
 	public String postView(ReplyVo vo, HttpSession session) throws Exception {
@@ -60,5 +64,30 @@ public class ShopController {
 		service.up(vo);
 		
 		return "redirect:/shop/view?n=" + vo.getGdsNum();
+	}
+	
+	*/
+	
+	// 리뷰 작성 ajax
+	@ResponseBody
+	@RequestMapping(value="/view/up", method = RequestMethod.POST)
+	public void reply_write(ReplyVo vo, HttpSession session) throws Exception {
+		logger.info("reply write");
+		
+		AccountVo account = (AccountVo)session.getAttribute("account");
+		vo.setUserId(account.getUserId());
+		
+		service.up(vo);
+	}
+	
+	// 조회 - ajax
+	@ResponseBody
+	@RequestMapping(value="/view/replyList", method = RequestMethod.GET)
+	public List<ReplyVo> getReplyList(@RequestParam("n") int gdsNum) throws Exception {
+		logger.info("get reply list");
+		
+		List<ReplyVo> reply = service.reply_list(gdsNum);
+		
+		return reply;
 	}
 }
