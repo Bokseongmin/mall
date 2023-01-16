@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.mall.vo.GoodsViewVo;
+import com.mall.vo.ReplyVo;
 
 @Repository("ShopDao")
 public class ShopDao extends CommonDao{
@@ -28,5 +29,16 @@ public class ShopDao extends CommonDao{
 	
 	public GoodsViewVo view(int gdsNum) throws Exception {
 		return getSqlSession().selectOne("mShop.view", gdsNum);
+	}
+	
+	// 리뷰 작성
+	public void up(ReplyVo vo) throws Exception {
+		getSqlSession().insert("mShop.up", vo);
+	}
+	
+	
+	// 리뷰 목록
+	public List<ReplyVo> reply_list(int gdsNum) throws Exception {
+		return getSqlSession().selectList("mShop.reply_list", gdsNum);
 	}
 }

@@ -220,6 +220,22 @@ div.goods div.gdsDes {
 	clear: both;
 	padding-top: 30px;
 }
+
+</style>
+
+<style>
+	section.replyForm { padding:30px 0; }
+	section.replyForm div.input_area { margin:10px 0; }
+	section.replyForm textarea { font-size:16px; font-family:'맑은 고딕', verdana; padding:10px; width:500px;; height:150px; }
+	section.replyForm button { font-size:20px; padding:5px 10px; margin:10px 0; background:#fff; border:1px solid #ccc; }
+	 
+	section.replyList { padding:30px 0; }
+	section.replyList ol { padding:0; margin:0; }
+	section.replyList ol li { padding:10px 0; border-bottom:2px solid #eee; }
+	section.replyList div.userInfo { }
+	section.replyList div.userInfo .userName { font-size:24px; font-weight:bold; }
+	section.replyList div.userInfo .date { color:#999; display:inline-block; margin-left:10px; }
+	section.replyList div.replyContent { padding:10px; margin:20px 0; }
 </style>
 </head>
 <body>
@@ -271,7 +287,7 @@ div.goods div.gdsDes {
 								<span>구입 수량</span>
 								<button type="button" class="plus">+</button>
 								<input type="number" class="numBox" min="1"
-									max="${view.gdsStock}" value="1"/>
+									max="${view.gdsStock}" value="1" />
 								<button type="button" class="minus">-</button>
 								<script>
 									  $(".plus").click(function(){
@@ -304,6 +320,47 @@ div.goods div.gdsDes {
 						</div>
 
 						<div class="gdsDes">${view.gdsDes}</div>
+					</div>
+
+					<div id="reply">
+
+						<c:if test="${account == null }">
+							<p>
+								리뷰를 남기시려면 <a href="/sign/in">로그인</a>해주세요
+							</p>
+						</c:if>
+
+						<c:if test="${account != null}">
+							<section class="replyForm">
+								<form role="form" method="post" autocomplete="off">
+									<input type="hidden" name="gdsNum" value="${view.gdsNum}">
+									<div class="input_area">
+										<textarea name="repCon" id="repCon"></textarea>
+									</div>
+
+									<div class="input_area">
+										<button type="submit" id="reply_btn">리뷰 남기기</button>
+									</div>
+
+								</form>
+							</section>
+						</c:if>
+
+						<section class="replyList">
+							<ol>
+								<c:forEach items="${reply}" var="reply">
+
+									<li>
+										<div class="userInfo">
+											<span class="userName">${reply.userName}</span> <span
+												class="date"><fmt:formatDate value="${reply.repDate}"
+													pattern="yyyy-MM-dd" /></span>
+										</div>
+										<div class="replyContent">${reply.repCon}</div>
+									</li>
+								</c:forEach>
+							</ol>
+						</section>
 					</div>
 				</section>
 				<aside id="aside">

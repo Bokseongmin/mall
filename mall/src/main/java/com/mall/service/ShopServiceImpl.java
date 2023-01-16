@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mall.dao.ShopDao;
 import com.mall.vo.GoodsViewVo;
+import com.mall.vo.ReplyVo;
 
 @Service
 public class ShopServiceImpl implements ShopService{
@@ -29,5 +30,13 @@ public class ShopServiceImpl implements ShopService{
 
 	public GoodsViewVo view(int gdsNum) throws Exception {
 		return dao.view(gdsNum);
+	}
+
+	public void up(ReplyVo vo) throws Exception {
+		dao.up(vo);
+	}
+	
+	public List<ReplyVo> reply_list(int gdsNum) throws Exception {
+		return dao.reply_list(gdsNum);
 	}
 }

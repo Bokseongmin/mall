@@ -29,4 +29,19 @@
         ON g.cateCode = c.cateCode          
         WHERE g.gdsNum = #{gdsNum}
 	</select>
+	
+	<!-- 리뷰 작성 -->
+	<insert id="up">
+		INSERT INTO reply(gdsNum, userId, repCon)
+		VALUES (#{gdsNum}, #{userId}, #{repCon})
+	</insert>
+	
+	<!-- 리뷰 목록 -->
+	<select id="reply_list" resultType="ReplyVo">
+		SELECT  r.repNum, r.gdsNum, r.userId, r.repCon, r.repDate, a.userName
+		FROM reply r
+		INNER JOIN account a
+		ON r.userId = a.userId
+		WHERE gdsNum = #{gdsNum}
+	</select>
 </mapper>
