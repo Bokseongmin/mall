@@ -20,6 +20,7 @@ public interface ShopService {
 	public List<ReplyVo> reply_list(int gdsNum) throws Exception;
 	
 	// 리뷰 수정
+	public void reply_modify(ReplyVo vo) throws Exception;
 	
 	// 리뷰 삭제
 	public void reply_delete(ReplyVo vo) throws Exception;

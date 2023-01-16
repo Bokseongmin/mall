@@ -43,6 +43,9 @@ public class ShopDao extends CommonDao{
 	}
 	
 	// 리뷰 수정
+	public void reply_modify(ReplyVo vo) throws Exception {
+		getSqlSession().update("mShop.reply_modify", vo);
+	}
 	
 	// 리뷰 삭제
 	public void reply_delete(ReplyVo vo) throws Exception {

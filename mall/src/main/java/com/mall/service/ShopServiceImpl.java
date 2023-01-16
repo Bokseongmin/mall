@@ -47,4 +47,8 @@ public class ShopServiceImpl implements ShopService{
 	public String idCheck(int repNum) throws Exception {
 		return dao.idCheck(repNum);
 	}
+
+	public void reply_modify(ReplyVo vo) throws Exception {
+		dao.reply_modify(vo);
+	}
 }

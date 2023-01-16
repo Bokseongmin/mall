@@ -46,6 +46,13 @@
 	</select>
 	
 	<!-- 리뷰 수정 -->
+	<update id="reply_modify">
+		UPDATE reply
+		SET repCon = #{repCon}
+		WHERE repNum = #{repNum}
+		AND userId = #{userId}
+	</update>
+
 	<!-- 리뷰 삭제 -->
 	<delete id="reply_delete">
 		DELETE FROM reply
