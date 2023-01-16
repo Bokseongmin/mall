@@ -81,4 +81,11 @@
 		ON c.gdsNum = g.gdsNum
 		WHERE c.userId = #{userId}
 	</select>
+	
+	<!-- 선택 삭제 -->
+	<delete id="cart_delete">
+		DELETE FROM cart
+		WHERE cartNum = #{cartNum}
+		AND userId = #{userId}
+	</delete>
 </mapper>

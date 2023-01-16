@@ -67,4 +67,9 @@ public class ShopDao extends CommonDao{
 	public List<CartVo> cart_list(String userId) throws Exception {
 		return getSqlSession().selectList("mShop.cart_list", userId);
 	}
+	
+	// 카트 삭제
+	public void cart_delete(CartVo vo) throws Exception {
+		getSqlSession().delete("mShop.cart_delete", vo);
+	}
 }

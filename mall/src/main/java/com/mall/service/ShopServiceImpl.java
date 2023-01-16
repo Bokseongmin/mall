@@ -60,4 +60,8 @@ public class ShopServiceImpl implements ShopService{
 	public List<CartVo> cart_List(String userId) throws Exception {
 		return dao.cart_list(userId);
 	}
+
+	public void cart_delete(CartVo vo) throws Exception {
+		dao.cart_delete(vo);
+	}
 }

@@ -34,4 +34,7 @@ public interface ShopService {
 
 	// 카트 리스트
 	public List<CartVo> cart_List(String userId) throws Exception;
+	
+	// 카트 삭제
+	public void cart_delete(CartVo vo) throws Exception;
 }
