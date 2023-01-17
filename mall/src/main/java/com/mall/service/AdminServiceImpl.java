@@ -10,6 +10,8 @@ import com.mall.dao.AdminDao;
 import com.mall.vo.CategoryVo;
 import com.mall.vo.GoodsViewVo;
 import com.mall.vo.GoodsVo;
+import com.mall.vo.OrderListVo;
+import com.mall.vo.OrderVo;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -48,5 +50,17 @@ public class AdminServiceImpl implements AdminService {
 
 	public void delete(int gdsNum) throws Exception {
 		dao.delete(gdsNum);
+	}
+	
+	public List<OrderVo> order_list() throws Exception {
+		return dao.order_list();
+	}
+	
+	public List<OrderListVo> order_view(OrderVo vo) throws Exception {
+		return dao.order_view(vo);
+	}
+	
+	public void delivery(OrderVo vo) throws Exception {
+		dao.delivery(vo);
 	}
 }

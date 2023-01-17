@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import com.mall.vo.CategoryVo;
 import com.mall.vo.GoodsViewVo;
 import com.mall.vo.GoodsVo;
+import com.mall.vo.OrderListVo;
+import com.mall.vo.OrderVo;
 
 @Repository("AdminDao")
 public class AdminDao extends CommonDao {
@@ -50,5 +52,20 @@ public class AdminDao extends CommonDao {
 	// 상품 삭제
 	public void delete(int gdsNum) throws Exception {
 		getSqlSession().delete("mAdmin.delete", gdsNum);
+	}
+	
+	// 모든 유저 주문
+	public List<OrderVo> order_list() throws Exception {
+		return getSqlSession().selectList("mAdmin.order_list");
+	}
+	
+	// 특정 주문
+	public List<OrderListVo> order_view(OrderVo vo) throws Exception {
+		return getSqlSession().selectList("mAdmin.order_view", vo);
+	}
+	
+	// 배송 정보
+	public void delivery(OrderVo vo) throws Exception {
+		getSqlSession().update("mAdmin.delivery", vo);
 	}
 }

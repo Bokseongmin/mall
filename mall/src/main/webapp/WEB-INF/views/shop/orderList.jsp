@@ -222,6 +222,7 @@ aside#aside li>ul.low li {
 									value="${orderList.amount}" />
 								원
 							</p>
+							<p><span>상태</span>${orderList.delivery}</p>
 						</div>
 					</li>
 				</c:forEach>

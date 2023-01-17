@@ -12,6 +12,7 @@ public class OrderListVo {
 	private String orderPhon;
 	private int amount;
 	private Date orderDate;
+	private String delivery;
 	
 	private int orderNum;
 	private int gdsNum;
@@ -110,5 +111,12 @@ public class OrderListVo {
 	}
 	public void setGdsPrice(int gdsPrice) {
 		this.gdsPrice = gdsPrice;
+	}
+
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
 	}
 }

@@ -26,6 +26,8 @@ import com.mall.utils.UploadFileUtils;
 import com.mall.vo.CategoryVo;
 import com.mall.vo.GoodsViewVo;
 import com.mall.vo.GoodsVo;
+import com.mall.vo.OrderListVo;
+import com.mall.vo.OrderVo;
 
 import net.sf.json.JSONArray;
 
@@ -205,5 +207,36 @@ public class AdminController {
 		service.delete(gdsNum);
 
 		return "redirect:/admin/index";
+	}
+	
+	// 주문 목록
+	@RequestMapping(value="/shop/orderList", method = RequestMethod.GET)
+	public void getOrderList(Model model) throws Exception {
+		logger.info("get order list");
+		
+		List<OrderVo> orderList = service.order_list();
+		
+		model.addAttribute("orderList", orderList);
+	}
+	
+	// 주문 상세
+	@RequestMapping(value="/shop/orderView", method = RequestMethod.GET)
+	public void getOrderView(@RequestParam("n") String orderId, OrderVo vo, Model model) throws Exception {
+		logger.info("get order view");
+		
+		vo.setOrderId(orderId);
+		List<OrderListVo> orderView = service.order_view(vo);
+		
+		model.addAttribute("orderView", orderView);
+	}
+	
+	// 주문 상세 - 상태 변경
+	@RequestMapping(value="/shop/orderView", method = RequestMethod.POST)
+	public String delivery(OrderVo vo) throws Exception {
+		logger.info("post order view");
+		
+		service.delivery(vo);
+		
+		return "redirect:/admin/shop/orderView?n=" + vo.getOrderId();
 	}
 }

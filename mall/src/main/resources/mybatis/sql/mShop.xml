@@ -110,14 +110,14 @@
 	
 	<!-- 유저 주문 목록 -->
 	<select id="order_list" resultType="OrderVo">
-		SELECT orderId, userId, orderRec, userAddr1, userAddr2, userAddr3, orderPhon, amount, orderDate
+		SELECT orderId, userId, orderRec, userAddr1, userAddr2, userAddr3, orderPhon, amount, orderDate, delivery
 		FROM order_tbl
 		WHERE userId = #{userId}
 	</select>
 	
 	<!-- 특정 주문 목록 -->
 	<select id="order_view" resultType="OrderListVo">
-		SELECT  o.orderId, o.userId, o.orderRec, o.userAddr1, o.userAddr2, o.userAddr3, o.orderPhon, o.amount, o.orderDate, d.orderNum, d.gdsNum, d.cartStock,
+		SELECT  o.orderId, o.userId, o.orderRec, o.userAddr1, o.userAddr2, o.userAddr3, o.orderPhon, o.amount, o.orderDate, o.delivery, d.orderNum, d.gdsNum, d.cartStock,
 		g.gdsName, g.gdsThumbImg, g.gdsPrice
 		FROM order_tbl o
 		INNER JOIN order_detail d
