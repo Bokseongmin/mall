@@ -237,6 +237,15 @@ public class AdminController {
 		
 		service.delivery(vo);
 		
+		List<OrderListVo> orderView = service.order_view(vo);
+		GoodsVo goods = new GoodsVo();
+		
+		for(OrderListVo i : orderView) {
+			goods.setGdsNum(i.getGdsNum());
+			goods.setGdsStock(i.getCartStock());
+			service.change_stock(goods);
+		}
+		
 		return "redirect:/admin/shop/orderView?n=" + vo.getOrderId();
 	}
 }

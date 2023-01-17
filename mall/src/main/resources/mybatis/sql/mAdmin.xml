@@ -93,4 +93,19 @@
 		SET delivery = #{delivery}
 		WHERE orderId = #{orderId}
 	</update>
+	
+	<!-- 상품 수량 설정 -->
+	<update id="change_stock">
+		UPDATE goods
+		SET gdsStock = gdsStock - #{gdsStock}
+		WHERE gdsNum = #{gdsNum}
+	</update>
+	
+	<!-- 상품 조절 보조 -->
+	<select id="change_stock_sub" resultType="OrderDetailVo">
+		SELECT orderId, gdsNum, cartStock
+		FROM order_detail
+		WHERE orderId = #{orderId}
+	</select>
+	
 </mapper>

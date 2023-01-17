@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.mall.dao.ShopDao;
 import com.mall.vo.CartVo;
 import com.mall.vo.GoodsViewVo;
+import com.mall.vo.GoodsVo;
 import com.mall.vo.OrderDetailVo;
 import com.mall.vo.OrderListVo;
 import com.mall.vo.OrderVo;

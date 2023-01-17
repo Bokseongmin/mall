@@ -42,4 +42,7 @@ public interface AdminService {
 	
 	// 배달 정보
 	public void delivery(OrderVo vo) throws Exception;
+	
+	// 수량 조절
+	public void change_stock(GoodsVo vo) throws Exception;
 }

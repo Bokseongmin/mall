@@ -15,5 +15,6 @@
 		<typeAlias type="com.mall.vo.CartVo" alias="CartVo" />
 		<typeAlias type="com.mall.vo.OrderVo" alias="OrderVo" />
 		<typeAlias type="com.mall.vo.OrderListVo" alias="OrderListVo" />
+		<typeAlias type="com.mall.vo.OrderDetailVo" alias="OrderDetailVo" />
 	</typeAliases>
 </configuration>

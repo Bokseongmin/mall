@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mall.vo.CartVo;
 import com.mall.vo.GoodsViewVo;
+import com.mall.vo.GoodsVo;
 import com.mall.vo.OrderDetailVo;
 import com.mall.vo.OrderListVo;
 import com.mall.vo.OrderVo;
@@ -55,4 +56,5 @@ public interface ShopService {
 	
 	// 특정 주문 목록
 	public List<OrderListVo> order_view(OrderVo vo) throws Exception;
+	
 }

@@ -63,4 +63,8 @@ public class AdminServiceImpl implements AdminService {
 	public void delivery(OrderVo vo) throws Exception {
 		dao.delivery(vo);
 	}
+	
+	public void change_stock(GoodsVo vo) throws Exception {
+		dao.change_stock(vo);
+	}
 }

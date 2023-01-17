@@ -68,4 +68,9 @@ public class AdminDao extends CommonDao {
 	public void delivery(OrderVo vo) throws Exception {
 		getSqlSession().update("mAdmin.delivery", vo);
 	}
+	
+	// 수량 조절
+	public void change_stock(GoodsVo vo) throws Exception {
+		getSqlSession().update("mAdmin.change_stock", vo);
+	}
 }
