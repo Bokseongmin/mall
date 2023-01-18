@@ -7,6 +7,7 @@ import com.mall.vo.GoodsViewVo;
 import com.mall.vo.GoodsVo;
 import com.mall.vo.OrderListVo;
 import com.mall.vo.OrderVo;
+import com.mall.vo.ReplyVo;
 
 public interface AdminService {
 	
@@ -45,4 +46,10 @@ public interface AdminService {
 	
 	// 수량 조절
 	public void change_stock(GoodsVo vo) throws Exception;
+	
+	// 댓글 조회
+	public List<ReplyVo> reply_list() throws Exception;
+	
+	// 댓글 삭제
+	public void reply_delete(int repNum) throws Exception;
 }

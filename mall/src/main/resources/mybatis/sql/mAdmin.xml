@@ -108,4 +108,17 @@
 		WHERE orderId = #{orderId}
 	</select>
 	
+	<!-- 댓글 조회 -->
+	<select id="reply_list" resultType="ReplyVo">
+		SELECT r.gdsNum, r.userId, r.repNum, r.repCon, r.repDate, a.userName
+		FROM reply r
+		INNER JOIN account a
+		ON r.userId = a.userId
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="reply_delete">
+		DELETE FROM reply
+		WHERE repNum = #{repNum}
+	</delete>
 </mapper>

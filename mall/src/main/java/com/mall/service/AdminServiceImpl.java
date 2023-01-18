@@ -12,6 +12,7 @@ import com.mall.vo.GoodsViewVo;
 import com.mall.vo.GoodsVo;
 import com.mall.vo.OrderListVo;
 import com.mall.vo.OrderVo;
+import com.mall.vo.ReplyVo;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -66,5 +67,13 @@ public class AdminServiceImpl implements AdminService {
 	
 	public void change_stock(GoodsVo vo) throws Exception {
 		dao.change_stock(vo);
+	}
+
+	public List<ReplyVo> reply_list() throws Exception {
+		return dao.reply_list();
+	}
+
+	public void reply_delete(int repNum) throws Exception {
+		dao.reply_delete(repNum);
 	}
 }

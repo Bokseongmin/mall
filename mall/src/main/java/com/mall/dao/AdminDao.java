@@ -9,6 +9,7 @@ import com.mall.vo.GoodsViewVo;
 import com.mall.vo.GoodsVo;
 import com.mall.vo.OrderListVo;
 import com.mall.vo.OrderVo;
+import com.mall.vo.ReplyVo;
 
 @Repository("AdminDao")
 public class AdminDao extends CommonDao {
@@ -72,5 +73,15 @@ public class AdminDao extends CommonDao {
 	// 수량 조절
 	public void change_stock(GoodsVo vo) throws Exception {
 		getSqlSession().update("mAdmin.change_stock", vo);
+	}
+	
+	//댓글 조회
+	public List<ReplyVo> reply_list() throws Exception {
+		return getSqlSession().selectList("mAdmin.reply_list");
+	}
+	
+	//댓글 삭제
+	public void reply_delete(int repNum) throws Exception {
+		getSqlSession().delete("mAdmin.reply_delete", repNum);
 	}
 }

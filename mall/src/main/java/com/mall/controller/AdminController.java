@@ -28,6 +28,7 @@ import com.mall.vo.GoodsViewVo;
 import com.mall.vo.GoodsVo;
 import com.mall.vo.OrderListVo;
 import com.mall.vo.OrderVo;
+import com.mall.vo.ReplyVo;
 
 import net.sf.json.JSONArray;
 
@@ -247,5 +248,27 @@ public class AdminController {
 		}
 		
 		return "redirect:/admin/shop/orderView?n=" + vo.getOrderId();
+	}
+	
+	// 댓글
+	@RequestMapping(value="/shop/replyAll", method = RequestMethod.GET)
+	public void getReplyAll(Model model) throws Exception {
+		logger.info("get reply all");
+		
+		List<ReplyVo> reply = service.reply_list();
+		
+		model.addAttribute("reply", reply);
+	}
+	
+	// 댓글
+	@RequestMapping(value = "/shop/replyAll", method = RequestMethod.POST)
+	public String postReplyAll(ReplyVo vo) throws Exception {
+		logger.info("post reply delete");
+
+		System.out.println(vo.getRepNum());
+
+		service.reply_delete(vo.getRepNum());
+
+		return "redirect:/admin/shop/replyAll";
 	}
 }
