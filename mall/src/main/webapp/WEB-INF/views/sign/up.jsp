@@ -1,45 +1,246 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java"
-	session="false"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Home</title>
+<link rel="stylesheet" href="resources/css/main.css">
 
-<link rel="stylesheet" href="/resources/css/account/up.css">
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	font-family: '맑은 고딕', verdana;
+}
+
+a {
+	color: #05f;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+}
+
+ul, lo, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* ---------- */
+div#root {
+	width: 900px;
+	margin: 0 auto;
+}
+
+header#header {
+	
+}
+
+nav#nav {
+	
+}
+
+section#container {
+	
+}
+
+section#content {
+	float: right;
+	width: 700px;
+}
+
+aside#aside {
+	float: left;
+	width: 180px;
+}
+
+section#container::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+footer#footer {
+	background: #eee;
+	padding: 20px;
+}
+
+/* ---------- */
+header#header div#header_box {
+	text-align: center;
+	padding: 30px 0;
+}
+
+header#header div#header_box h1 {
+	font-size: 50px;
+}
+
+header#header div#header_box h1 a {
+	color: #000;
+}
+
+nav#nav div#nav_box {
+	font-size: 14px;
+	padding: 10px;
+	text-align: right;
+}
+
+nav#nav div#nav_box li {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+nav#nav div#nav_box li a {
+	color: #333;
+}
+
+section#container {
+	
+}
+
+aside#aside h3 {
+	font-size: 22px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+aside#aside li {
+	font-size: 16px;
+	text-align: center;
+}
+
+aside#aside li a {
+	color: #000;
+	display: block;
+	padding: 10px 0;
+}
+
+aside#aside li a:hover {
+	text-decoration: none;
+	background: #eee;
+}
+
+footer#footer {
+	margin-top: 100px;
+	border-radius: 50px 50px 0 0;
+}
+
+footer#footer div#footer_box {
+	padding: 0 20px;
+}
+
+aside#aside li {
+	position: relative;
+}
+
+aside#aside li:hover {
+	background: #eee;
+}
+
+aside#aside li>ul.low {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 180px;
+}
+
+aside#aside li:hover>ul.low {
+	display: block;
+}
+
+aside#aside li:hover>ul.low li a {
+	background: #eee;
+	border: 1px solid #eee;
+}
+
+aside#aside li:hover>ul.low li a:hover {
+	background: #fff;
+}
+
+aside#aside li>ul.low li {
+	width: 180px;
+}
+</style>
+<style>
+.input_area {
+	margin: auto;
+}
+
+button {
+	width: auto;
+}
+
+label {
+	display: inline-block;
+	width: 70px;
+	padding: 5px;
+}
+</style>
 </head>
+
 <body>
-	<header>
-		<%@include file="../include/header.jsp"%>
-	</header>
-	<nav>
-		<%@include file="../include/nav.jsp"%>
-	</nav>
-	<section id="content">
-		<form role="form" method="post" autocomplete="off">
-			<div class="input_area">
-				<label for="userId">아이디</label> <input type="email" id="userId"
-					name="userId" placeholder="example@email.com" required="required" />
+	<div id="root">
+		<header id="header">
+			<div id="header_box">
+				<%@ include file="../include/header.jsp"%>
 			</div>
+		</header>
 
-			<div class="input_area">
-				<label for="userPass">패스워드</label> <input type="password"
-					id="userPass" name="userPass" required="required" />
+		<nav id="nav">
+			<div id="nav_box">
+				<%@include file="../include/nav.jsp"%>
 			</div>
+		</nav>
 
-			<div class="input_area">
-				<label for="userName">닉네임</label> <input type="text" id="userName"
-					name="userName" placeholder="닉네임을 입력해주세요" required="required" />
+		<section id="container">
+			<div id="container_box">
+				<section id="content">
+					<div class="login_form">
+						<form role="form" method="post" autocomplete="off">
+							<div class="input_area">
+								<label for="userId">아이디</label> <input type="email" id="userId"
+									name="userId" placeholder="example@email.com"
+									required="required" />
+							</div>
+
+							<div class="input_area">
+								<label for="userPass">패스워드</label> <input type="password"
+									id="userPass" name="userPass" required="required" />
+							</div>
+
+							<div class="input_area">
+								<label for="userName">닉네임</label> <input type="text"
+									id="userName" name="userName" placeholder="닉네임을 입력해주세요"
+									required="required" />
+							</div>
+
+							<div class="input_area">
+								<label for="userPhon">연락처</label> <input type="text"
+									id="userPhon" name="userPhon" placeholder="연락처를 입력해주세요"
+									required="required" />
+							</div>
+
+							<button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
+
+						</form>
+					</div>
+				</section>
 			</div>
+		</section>
 
-			<div class="input_area">
-				<label for="userPhon">연락처</label> <input type="text" id="userPhon"
-					name="userPhon" placeholder="연락처를 입력해주세요" required="required" />
+		<footer id="footer">
+			<div id="footer_box">
+				<%@ include file="../include/footer.jsp"%>
 			</div>
-
-			<button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
-
-		</form>
-	</section>
+		</footer>
+	</div>
 </body>
+
 </html>
